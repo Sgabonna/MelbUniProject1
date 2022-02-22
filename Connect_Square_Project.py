@@ -13,15 +13,15 @@ def create_board():
 def add_coin(board, row, col, coin):
     board[row][col] = coin
 
-def is_valid_location(board, col):
+def is_valid_location(board, col): #Looks at top row to see if empty. If not empty, will not allow further placement of coin.
     return board[ROW_COUNT-1][col] == 0
 
-def get_next_open_row(board, col):
+def get_next_open_row(board, col): #Identifies which rows have been filled, so coin will not stack ontop of each other.
     for r in range(ROW_COUNT):
         if board[r][col] == 0:
             return r
 
-def print_board(board):
+def print_board(board): #Python has 0 defined as the top left corner, needed coins to be placed beginning bottom left. Flipped the 'board'.
     print(np.flip(board, 0))
 
 def is_winner(board, coin):
@@ -30,8 +30,7 @@ def is_winner(board, coin):
         for r in range(ROW_COUNT-1):
             if board[r][c] == coin and board[r][c+1] == coin and board[r+1][c] == coin and board[r+1][c+1] == coin:
                return True 
-    # Check horizontal locations for win
-    # Changes needed = if making a square rather than a row, perhaps it only goes c and c+1, then pair with r and r+1
+    # Check square for win
 
 def draw_board(board):
     pass
